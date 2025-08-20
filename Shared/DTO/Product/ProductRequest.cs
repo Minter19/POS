@@ -11,5 +11,6 @@ namespace Shared.DTO.Product
         public required string Name { get; set; }
         public string? Description { get; set; } = "";
         public required Decimal Price { get; set; } = new Decimal(0);
+        public required int Stock { get; set; } = 0;
     }
 }

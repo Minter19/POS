@@ -36,8 +36,10 @@ namespace Api.Endpoints
                     Id = Guid.NewGuid(),
                     Name = newProduct.Name,
                     Description = newProduct.Description,
-                    Price = newProduct.Price
+                    Price = newProduct.Price,
+                    Stock= newProduct.Stock
                 };
+
                 await productService.AddProduct(product);
                 return Results.Created($"/api/products/{newProduct.Name}", product);
             });

@@ -21,22 +21,42 @@ namespace Infrastructure.Repositories
 
         public async Task<List<ProductResponse>> GetAllAsync()
         {
-            var products = await _context.Products.ToListAsync();
-            var productResponses = products.Select(p => new ProductResponse
+            try
             {
-                Id = p.Id,
-                Name = p.Name,
-                Price = p.Price,
-                Description = p.Description,
-            }).ToList();
+                var products = await _context.Products.ToListAsync();
+                var productResponses = products.Select(p => new ProductResponse
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    Description = p.Description,
+                }).ToList();
 
-            return productResponses;
+                _logger.LogDebug("Success get all products");
+                return productResponses;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error:: {msg}", ex.Message);
+                throw;
+            }
+
         }
 
         public async Task<Product?> GetByIdAsync(Guid id)
         {
-            var productById = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
-            return productById;
+            try
+            {
+                var productById = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+
+                _logger.LogDebug("Success get product by id {idProduct}", id);
+                return productById;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error:: {msg}", ex.Message);
+                throw;
+            }
         }
 
         public async Task AddAsync(Product product)

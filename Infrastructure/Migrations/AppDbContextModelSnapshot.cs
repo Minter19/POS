@@ -40,6 +40,7 @@ namespace Infrastructure.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Stock")
+                        .HasMaxLength(6)
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -84,6 +85,7 @@ namespace Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Quantity")
+                        .HasMaxLength(6)
                         .HasColumnType("int");
 
                     b.Property<Guid>("TransactionId")

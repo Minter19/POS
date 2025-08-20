@@ -18,9 +18,17 @@ namespace Infrastructure.Data
                 .Property(p => p.Price)
                 .HasPrecision(18, 2);
 
+            modelBuilder.Entity<Product>()
+                .Property(p => p.Stock)
+                .HasMaxLength(6);
+
             modelBuilder.Entity<TransactionItem>()
-                .Property(p=>p.PricePerUnit)
+                .Property(p => p.PricePerUnit)
                 .HasPrecision(18, 2);
+
+            modelBuilder.Entity<TransactionItem>()
+                .Property(p => p.Quantity)
+                .HasMaxLength(6);
 
             modelBuilder.Entity<Transaction>()
                 .Property(p => p.TotalAmount)
