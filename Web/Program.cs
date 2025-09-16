@@ -2,6 +2,8 @@ using MudBlazor.Services;
 using Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);
+//add httpclient
+builder.Services.AddHttpClient();
 
 // Add MudBlazor services
 builder.Services.AddMudServices();
@@ -21,7 +23,6 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 
 app.UseAntiforgery();
 

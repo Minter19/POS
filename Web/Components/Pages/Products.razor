@@ -1,0 +1,41 @@
+﻿@page "/product"
+@inject HttpClient client;
+@using Shared.DTO.Product;
+<h3>Products</h3>
+
+
+@if (_isError)
+{
+    <p>Error while fetching data!</p>
+}
+else
+{
+    <ul>
+        @foreach(var product in _productResponses)
+        {
+            <li>@product.Id | @product.Name</li>
+        }
+    </ul>
+}
+
+@code {
+    private List<ProductResponse> _productResponses = new();
+    private bool _isError;
+    protected override async Task OnInitializedAsync()
+    {
+        using var request = new HttpRequestMessage(HttpMethod.Get, "https://localhost:44313/api/products");
+        using var response = await client.SendAsync(request);
+        if (response.IsSuccessStatusCode && response.Content != null)
+        {
+            var products = await response.Content.ReadFromJsonAsync<List<ProductResponse>>();
+            if (products != null)
+            {
+                _productResponses = products;
+            }
+        }
+        else
+        {
+            _isError=true;
+        }
+    }
+}

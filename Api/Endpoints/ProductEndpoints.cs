@@ -9,7 +9,7 @@ namespace Api.Endpoints
         public static void MapProductEndpoints(this WebApplication app)
         {
             var productGroup = app.MapGroup("/api/products").WithTags("Products");
-
+            
             productGroup.MapGet("/", async (IProductService productService) =>
             {
                 var products = await productService.GetAllProducts();

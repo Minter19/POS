@@ -17,6 +17,8 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(conn
 //Daftarkan layanan di DI
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 //Add swagger
 builder.Services.AddEndpointsApiExplorer();
@@ -29,10 +31,22 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    // Redirect otomatis ke Swagger UI saat root diakses
+    app.Use(async (context, next) =>
+    {
+        if (context.Request.Path == "/")
+        {
+            context.Response.Redirect("/swagger");
+            return;
+        }
+        await next();
+    });
+
 }
 
 app.UseHttpsRedirection();
 
 app.MapProductEndpoints();
+app.MapUserEndpoints();
 
 app.Run();
