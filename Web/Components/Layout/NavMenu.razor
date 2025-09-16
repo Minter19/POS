@@ -1,9 +1,27 @@
-﻿
+﻿@using Microsoft.AspNetCore.Components.Authorization
+
 <MudNavMenu>
     <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
     <MudNavLink Href="counter" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Add">Counter</MudNavLink>
-    
+
     <MudNavLink Href="weather" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Weather</MudNavLink>
+
+    <MudNavLink class="nav-link" Icon="@Icons.Material.Filled.Lock" href="secure-call">
+        <span class="oi oi-lock-locked" aria-hidden="true"></span> Call API
+    </MudNavLink>
+
+    <AuthorizeView>
+        <Authorized>
+            <MudNavLink class="nav-link" Icon="@Icons.Material.Filled.Logout" href="signout">
+                Logout
+            </MudNavLink>
+        </Authorized>
+        <NotAuthorized>
+            <MudNavLink class="nav-link" Icon="@Icons.Material.Filled.Login" href="login">
+                Login
+            </MudNavLink>
+        </NotAuthorized>
+    </AuthorizeView>
 
 </MudNavMenu>
 

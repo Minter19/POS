@@ -15,7 +15,7 @@ namespace Api.Endpoints
             {
                 var users = await userService.GetAllUsers();
                 return Results.Ok(users);
-            });
+            }).RequireAuthorization();
 
             userGroup.MapGet("/{id}", async (IUserService userService, Guid id) =>
             {
