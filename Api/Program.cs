@@ -7,8 +7,37 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using OpenTelemetry.Logs;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//Konfigurasi Opentelemetry
+// clear these providers.
+builder.Logging.ClearProviders();
+
+builder.Services.AddOpenTelemetry()
+    .ConfigureResource(resource =>
+    {
+        resource.AddService(serviceName: builder.Environment.ApplicationName);
+    })
+    .WithTracing( tracing =>
+    {
+        tracing.AddAspNetCoreInstrumentation();
+        tracing.AddConsoleExporter();
+    })
+    //.WithMetrics(metrics => metrics
+    //    .AddAspNetCoreInstrumentation()
+    //    .AddConsoleExporter((exporterOptions, metricReaderOptions) =>
+    //    {
+    //        metricReaderOptions.PeriodicExportingMetricReaderOptions.ExportIntervalMilliseconds = 1000;
+    //    }))
+    .WithLogging(logging =>
+    {
+        logging.AddConsoleExporter();
+    });
 
 // Konfigurasi Layanan DI
 builder.Services.AddOpenApi();
