@@ -38,8 +38,8 @@
 
         _theme = new()
         {
-            PaletteLight = _lightPalette,
-            PaletteDark = _darkPalette,
+            PaletteLight = _freshLightPalette,
+            PaletteDark = _pertaminaKekinianDark,
             LayoutProperties = new LayoutProperties()
         };
     }
@@ -54,6 +54,35 @@
         _isDarkMode = !_isDarkMode;
     }
 
+    private readonly PaletteDark _pertaminaKekinianDark = new()
+    {
+        // Biru cerah sebagai Primary baru
+        Primary = "#3B82F6",
+
+        // Latar belakang Slate Gray yang modern
+        Surface = "#1F2937",
+        Background = "#111827",
+        BackgroundGray = "#0F1521",
+
+        // Teks putih kebiruan yang bersih
+        TextPrimary = "#e5e7eb",
+        TextSecondary = "#9ca3af",
+        TextDisabled = "#ffffff33",
+
+        // Appbar dengan efek transparan (Glassmorphism)
+        AppbarBackground = "rgba(31, 41, 55, 0.7)",
+        DrawerBackground = "#111827",
+
+        // Warna Status Fungsional yang lebih cerah
+        Success = "#22C55E",
+        Error = "#EF4444",
+        Info = "#3B82F6",
+        Warning = "#F59E0B",
+
+        // Garis & Pemisah
+        Divider = "#374151",
+    };
+
     private readonly PaletteLight _lightPalette = new()
     {
         Black = "#110e2d",
@@ -62,6 +91,45 @@
         DrawerBackground = "#ffffff",
         GrayLight = "#e8e8e8",
         GrayLighter = "#f9f9f9",
+    };
+
+    private readonly PaletteLight _freshLightPalette = new()
+    {
+        // Aksen Teal/Mint yang menyegarkan
+        Primary = "#00a79d",
+
+        // Latar belakang putih dan abu-abu sangat terang untuk kesan luas
+        Background = "#ffffff",
+        Surface = "#f5f7fa",
+        BackgroundGray = "#f0f2f5",
+
+        // Teks gelap untuk keterbacaan maksimal
+        TextPrimary = "#1f2937",
+        TextSecondary = "#6b7280",
+        TextDisabled = "#9ca3af",
+
+        // Warna Aksi yang jelas
+        ActionDefault = "#4b5563",
+        ActionDisabled = "#d1d5db",
+        ActionDisabledBackground = "#e5e7eb",
+
+        // Warna Appbar & Drawer yang bersih
+        AppbarBackground = "#ffffff",
+        AppbarText = "#4b5563",
+        DrawerBackground = "#ffffff",
+        DrawerIcon = "#4b5563",
+        DrawerText = "#4b5563",
+
+        // Garis & Pemisah yang tipis
+        LinesDefault = "#d1d5db",
+        TableLines = "#e5e7eb",
+        Divider = "#e5e7eb",
+
+        // Warna Status yang cerah dan standar
+        Info = "#3b82f6",
+        Success = "#16a34a",
+        Warning = "#f97316",
+        Error = "#ef4444",
     };
 
     private readonly PaletteDark _darkPalette = new()
