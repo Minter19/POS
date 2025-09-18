@@ -2,9 +2,37 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using MudBlazor.Services;
+using OpenTelemetry.Logs;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//Konfigurasi Opentelemetry
+// clear these providers.
+builder.Logging.ClearProviders();
+
+builder.Services.AddOpenTelemetry()
+    .ConfigureResource(resource =>
+    {
+        resource.AddService(serviceName: builder.Environment.ApplicationName);
+    })
+    .WithTracing(tracing =>
+    {
+        tracing.AddAspNetCoreInstrumentation();
+        tracing.AddConsoleExporter();
+    })
+    //.WithMetrics(metrics => metrics
+    //    .AddAspNetCoreInstrumentation()
+    //    .AddConsoleExporter((exporterOptions, metricReaderOptions) =>
+    //    {
+    //        metricReaderOptions.PeriodicExportingMetricReaderOptions.ExportIntervalMilliseconds = 1000;
+    //    }))
+    .WithLogging(logging =>
+    {
+        logging.AddConsoleExporter();
+    });
 
 // Add MudBlazor services
 builder.Services.AddMudServices();
