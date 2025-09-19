@@ -23,7 +23,7 @@ builder.Services.AddOpenTelemetry()
     {
         resource.AddService(serviceName: builder.Environment.ApplicationName);
     })
-    .WithTracing( tracing =>
+    .WithTracing(tracing =>
     {
         tracing.AddAspNetCoreInstrumentation();
         tracing.AddConsoleExporter();

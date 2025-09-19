@@ -9,6 +9,6 @@ namespace Domain.Entities
         public string? Description { get; set; }
         public required decimal Price { get; set; }
         [Range(0, 999999)]
-        public int Stock {  get; set; }
+        public int Stock { get; set; }
     }
 }

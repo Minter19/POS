@@ -11,7 +11,7 @@ namespace Api.Endpoints
         {
             var userGroup = app.MapGroup("/api/users").WithTags("Users");
 
-            userGroup.MapGet("/", async(IUserService userService) =>
+            userGroup.MapGet("/", async (IUserService userService) =>
             {
                 var users = await userService.GetAllUsers();
                 return Results.Ok(users);
@@ -20,9 +20,10 @@ namespace Api.Endpoints
             userGroup.MapGet("/{id}", async (IUserService userService, Guid id) =>
             {
                 var user = await userService.GetUserById(id);
-                if(user == null)
+                if (user == null)
                 {
-                    return Results.NotFound(new { 
+                    return Results.NotFound(new
+                    {
                         Results = $"User dengan Id ${id} tidak ditemukan."
                     });
                 }
@@ -49,7 +50,7 @@ namespace Api.Endpoints
                 return Results.Ok();
             });
 
-            
+
         }
     }
 }

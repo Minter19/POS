@@ -9,7 +9,7 @@ namespace Api.Endpoints
         public static void MapProductEndpoints(this WebApplication app)
         {
             var productGroup = app.MapGroup("/api/products").WithTags("Products");
-            
+
             productGroup.MapGet("/", async (IProductService productService) =>
             {
                 var products = await productService.GetAllProducts();
@@ -30,14 +30,15 @@ namespace Api.Endpoints
                 return Results.Ok(product);
             });
 
-            productGroup.MapPost("/", async(IProductService productService, ProductRequest newProduct) =>
+            productGroup.MapPost("/", async (IProductService productService, ProductRequest newProduct) =>
             {
-                var product = new Product {
+                var product = new Product
+                {
                     Id = Guid.NewGuid(),
                     Name = newProduct.Name,
                     Description = newProduct.Description,
                     Price = newProduct.Price,
-                    Stock= newProduct.Stock
+                    Stock = newProduct.Stock
                 };
 
                 await productService.AddProduct(product);

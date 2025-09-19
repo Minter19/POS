@@ -2,11 +2,6 @@
 using Domain.Interfaces;
 using Shared.DTO.User;
 using Shared.Helper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services
 {
@@ -20,7 +15,7 @@ namespace Application.Services
 
     }
 
-    public class UserService: IUserService
+    public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
         public UserService(IUserRepository userRepository)
@@ -28,11 +23,13 @@ namespace Application.Services
             _userRepository = userRepository;
         }
 
-        public Task<List<User>> GetAllUsers() {
+        public Task<List<User>> GetAllUsers()
+        {
             return _userRepository.GetAllAsync();
         }
 
-        public Task<User?> GetUserById(Guid id) {
+        public Task<User?> GetUserById(Guid id)
+        {
             return _userRepository.GetByIdAsync(id);
         }
         public Task AddUser(User user)

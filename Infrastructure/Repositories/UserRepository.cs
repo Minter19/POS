@@ -3,15 +3,10 @@ using Domain.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
-    public class UserRepository: IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly AppDbContext _context;
         private readonly ILogger<ProductRepository> _logger;
@@ -93,7 +88,7 @@ namespace Infrastructure.Repositories
                     _logger.LogDebug("Successfully deleted User with Uuid {Uuid}.", id);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError("Error:: {msg}", ex.Message);
                 throw;

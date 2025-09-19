@@ -4,7 +4,6 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Shared.DTO.Product;
-using System;
 
 namespace Infrastructure.Repositories
 {
@@ -66,7 +65,8 @@ namespace Infrastructure.Repositories
                 await _context.Products.AddAsync(product);
                 await _context.SaveChangesAsync();
                 _logger.LogDebug("Success add product {productName}", product.Name);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 _logger.LogError("Error:: {msg}", ex.Message);
                 throw;
