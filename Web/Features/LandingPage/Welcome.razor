@@ -1,9 +1,306 @@
-﻿@using Web.Components.Layout
-@page "/welcome"
+﻿@page "/welcome"
+@using Microsoft.AspNetCore.Components.Web
+@using MudBlazor
+@using Web.Components.Layout
 @layout BlankLayout
 
-<div class="w-100 border" style="height: 100px;">Header</div>
-<div class="w-100 border" style="height: 500px;">Hero</div>
-@code {
+<PageTitle>Inameta - Global Energy Solutions</PageTitle>
+<link href="/assets/css/welcome.css" rel="stylesheet"/>
+<div class="page-container">
+    <!-- Navigation Bar -->
+    <MudAppBar Color="Color.Transparent" Elevation="0" Dense="false" Class="nav-bar">
+        <MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="nav-container">
+            <MudImage Src="assets/img/inameta-logo-white.png" Width="140" Alt="Inameta Logo" Class="logo" />
+            <MudSpacer />
+            
+            <!-- Desktop Navigation -->
+            <MudHidden Breakpoint="Breakpoint.MdAndDown">
+                <MudStack Row="true" Spacing="6" AlignItems="AlignItems.Center">
+                    <MudLink Href="#services" Class="nav-link">
+                        <MudText>Layanan</MudText>
+                    </MudLink>
+                    <MudLink Href="#fleet" Class="nav-link">
+                        <MudText>Armada</MudText>
+                    </MudLink>
+                    <MudLink Href="#about" Class="nav-link">
+                        <MudText>Tentang Kami</MudText>
+                    </MudLink>
+                    <MudLink Href="#contact" Class="nav-link">
+                        <MudText>Kontak</MudText>
+                    </MudLink>
+                    <MudButton Variant="Variant.Outlined" Color="Color.Primary" Class="cta-button">
+                        Konsultasi
+                    </MudButton>
+                </MudStack>
+            </MudHidden>
+            
+            <!-- Mobile Navigation -->
+            <MudHidden Breakpoint="Breakpoint.LgAndUp">
+                <MudMenu Icon="@Icons.Material.Filled.Menu" Color="Color.Primary" 
+                         AnchorOrigin="Origin.BottomRight" TransformOrigin="Origin.TopRight"
+                         Class="mobile-menu">
+                    <MudMenuItem Href="#services">Layanan</MudMenuItem>
+                    <MudMenuItem Href="#fleet">Armada</MudMenuItem>
+                    <MudMenuItem Href="#about">Tentang Kami</MudMenuItem>
+                    <MudMenuItem Href="#contact">Kontak</MudMenuItem>
+                    <MudDivider />
+                    <MudMenuItem Href="#contact">Konsultasi</MudMenuItem>
+                </MudMenu>
+            </MudHidden>
+        </MudContainer>
+    </MudAppBar>
 
-}
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="hero-content">
+            <div class="hero-text">
+                <div class="badge-container">
+                    <MudChip T="string" Color="Color.Primary" Variant="Variant.Filled" Class="hero-badge">
+                        Terdepan dalam Industri
+                    </MudChip>
+                </div>
+                
+                <MudText Typo="Typo.h1" Class="hero-title">
+                    Solusi Logistik Energi
+                    <span class="gradient-text">Terpercaya</span>
+                </MudText>
+                
+                <MudText Typo="Typo.h5" Class="hero-subtitle">
+                    Mengantarkan energi ke seluruh nusantara dengan armada modern, 
+                    teknologi canggih, dan komitmen terhadap keberlanjutan lingkungan.
+                </MudText>
+                
+                <div class="hero-actions">
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" 
+                               Class="primary-action" StartIcon="@Icons.Material.Filled.RocketLaunch">
+                        Jelajahi Layanan
+                    </MudButton>
+                    <MudButton Variant="Variant.Outlined" Color="Color.Surface" Size="Size.Large" 
+                               Class="secondary-action" StartIcon="@Icons.Material.Filled.PlayArrow">
+                        Tonton Video
+                    </MudButton>
+                </div>
+                
+                <!-- Stats -->
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <MudText Typo="Typo.h4" Class="stat-number">150+</MudText>
+                        <MudText Class="stat-label">Kapal Tanker</MudText>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <MudText Typo="Typo.h4" Class="stat-number">25</MudText>
+                        <MudText Class="stat-label">Tahun Pengalaman</MudText>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <MudText Typo="Typo.h4" Class="stat-number">99.9%</MudText>
+                        <MudText Class="stat-label">Keamanan</MudText>
+                    </div>
+                </div>
+            </div>
+        </MudContainer>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <MudIcon Icon="@Icons.Material.Filled.KeyboardArrowDown" Class="scroll-arrow" />
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <MudContainer MaxWidth="MaxWidth.ExtraLarge">
+            <div class="section-header">
+                <MudText Typo="Typo.overline" Class="section-label">Layanan Kami</MudText>
+                <MudText Typo="Typo.h3" Class="section-title">
+                    Solusi Komprehensif untuk Kebutuhan Energi
+                </MudText>
+            </div>
+            
+            <MudGrid Spacing="4" Class="services-grid">
+                <MudItem xs="12" md="4">
+                    <MudCard Class="service-card" Elevation="0">
+                        <MudCardContent Class="service-content">
+                            <div class="service-icon">
+                                <MudIcon Icon="@Icons.Material.Filled.LocalShipping" Class="icon" />
+                            </div>
+                            <MudText Typo="Typo.h6" Class="service-title">Transportasi Minyak</MudText>
+                            <MudText Class="service-description">
+                                Pengiriman minyak mentah dan produk olahan dengan standar keselamatan tertinggi
+                            </MudText>
+                        </MudCardContent>
+                    </MudCard>
+                </MudItem>
+                
+                <MudItem xs="12" md="4">
+                    <MudCard Class="service-card" Elevation="0">
+                        <MudCardContent Class="service-content">
+                            <div class="service-icon">
+                                <MudIcon Icon="@Icons.Material.Filled.Anchor" Class="icon" />
+                            </div>
+                            <MudText Typo="Typo.h6" Class="service-title">Layanan Pelabuhan</MudText>
+                            <MudText Class="service-description">
+                                Fasilitas bongkar muat modern di seluruh pelabuhan strategis Indonesia
+                            </MudText>
+                        </MudCardContent>
+                    </MudCard>
+                </MudItem>
+                
+                <MudItem xs="12" md="4">
+                    <MudCard Class="service-card" Elevation="0">
+                        <MudCardContent Class="service-content">
+                            <div class="service-icon">
+                                <MudIcon Icon="@Icons.Material.Filled.Security" Class="icon" />
+                            </div>
+                            <MudText Typo="Typo.h6" Class="service-title">Manajemen Risiko</MudText>
+                            <MudText Class="service-description">
+                                Sistem pemantauan real-time dan protokol keamanan berlapis
+                            </MudText>
+                        </MudCardContent>
+                    </MudCard>
+                </MudItem>
+            </MudGrid>
+        </MudContainer>
+    </section>
+
+    <!-- Fleet Section -->
+    <section id="fleet" class="fleet-section">
+        <div class="fleet-background"></div>
+        <MudContainer MaxWidth="MaxWidth.ExtraLarge">
+            <MudGrid AlignItems="Center">
+                <MudItem xs="12" lg="6">
+                    <div class="fleet-content">
+                        <MudText Typo="Typo.overline" Class="section-label light">Armada Modern</MudText>
+                        <MudText Typo="Typo.h3" Class="fleet-title">
+                            Teknologi Terdepan untuk Efisiensi Maksimal
+                        </MudText>
+                        <MudText Class="fleet-description">
+                            Armada kapal tanker kami dilengkapi dengan teknologi navigasi terkini, 
+                            sistem monitoring otomatis, dan standar lingkungan yang ketat untuk 
+                            memastikan pengiriman yang aman dan berkelanjutan.
+                        </MudText>
+                        
+                        <div class="fleet-features">
+                            <div class="feature-item">
+                                <MudIcon Icon="@Icons.Material.Filled.CheckCircle" Class="feature-icon" />
+                                <MudText>GPS Tracking Real-time</MudText>
+                            </div>
+                            <div class="feature-item">
+                                <MudIcon Icon="@Icons.Material.Filled.CheckCircle" Class="feature-icon" />
+                                <MudText>Sistem Keamanan Berlapis</MudText>
+                            </div>
+                            <div class="feature-item">
+                                <MudIcon Icon="@Icons.Material.Filled.CheckCircle" Class="feature-icon" />
+                                <MudText>Ramah Lingkungan</MudText>
+                            </div>
+                        </div>
+                        
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" 
+                                   Class="fleet-cta" StartIcon="@Icons.Material.Filled.Visibility">
+                            Lihat Armada Lengkap
+                        </MudButton>
+                    </div>
+                </MudItem>
+                
+                <MudItem xs="12" lg="6">
+                    <div class="fleet-visual">
+                        <!-- Placeholder for fleet image or 3D visualization -->
+                        <div class="fleet-placeholder">
+                            <MudIcon Icon="@Icons.Material.Filled.DirectionsBoat" Class="fleet-icon" />
+                            <MudText Typo="Typo.h6">Visualisasi Armada</MudText>
+                        </div>
+                    </div>
+                </MudItem>
+            </MudGrid>
+        </MudContainer>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <MudContainer MaxWidth="MaxWidth.Large">
+            <div class="cta-content">
+                <MudText Typo="Typo.h3" Class="cta-title">
+                    Siap Memulai Kemitraan?
+                </MudText>
+                <MudText Class="cta-subtitle">
+                    Hubungi tim ahli kami untuk konsultasi solusi logistik energi yang tepat
+                </MudText>
+                <div class="cta-actions">
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large"
+                               Class="cta-primary" StartIcon="@Icons.Material.Filled.Phone">
+                        Hubungi Kami
+                    </MudButton>
+                    <MudButton Variant="Variant.Text" Color="Color.Primary" Size="Size.Large"
+                               Class="cta-secondary" EndIcon="@Icons.Material.Filled.ArrowForward">
+                        Pelajari Lebih Lanjut
+                    </MudButton>
+                </div>
+            </div>
+        </MudContainer>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <MudContainer MaxWidth="MaxWidth.ExtraLarge">
+            <MudGrid>
+                <MudItem xs="12" md="4">
+                    <MudImage Src="assets/img/inameta-logo-white.png" Width="120" Alt="Inameta Logo" Class="footer-logo" />
+                    <MudText Class="footer-description">
+                        Mengantarkan energi untuk kemajuan bangsa dengan komitmen pada keunggulan operasional dan keberlanjutan.
+                    </MudText>
+                </MudItem>
+                
+                <MudItem xs="12" md="8">
+                    <MudGrid>
+                        <MudItem xs="6" md="3">
+                            <MudText Typo="Typo.h6" Class="footer-heading">Layanan</MudText>
+                            <MudStack Class="footer-links">
+                                <MudLink Href="#" Class="footer-link">Transportasi</MudLink>
+                                <MudLink Href="#" Class="footer-link">Logistik</MudLink>
+                                <MudLink Href="#" Class="footer-link">Konsultasi</MudLink>
+                            </MudStack>
+                        </MudItem>
+                        
+                        <MudItem xs="6" md="3">
+                            <MudText Typo="Typo.h6" Class="footer-heading">Perusahaan</MudText>
+                            <MudStack Class="footer-links">
+                                <MudLink Href="#" Class="footer-link">Tentang Kami</MudLink>
+                                <MudLink Href="#" Class="footer-link">Karir</MudLink>
+                                <MudLink Href="#" Class="footer-link">Berita</MudLink>
+                            </MudStack>
+                        </MudItem>
+                        
+                        <MudItem xs="6" md="3">
+                            <MudText Typo="Typo.h6" Class="footer-heading">Dukungan</MudText>
+                            <MudStack Class="footer-links">
+                                <MudLink Href="#" Class="footer-link">Bantuan</MudLink>
+                                <MudLink Href="#" Class="footer-link">Kontak</MudLink>
+                                <MudLink Href="#" Class="footer-link">FAQ</MudLink>
+                            </MudStack>
+                        </MudItem>
+                        
+                        <MudItem xs="6" md="3">
+                            <MudText Typo="Typo.h6" Class="footer-heading">Ikuti Kami</MudText>
+                            <MudStack Row="true" Class="social-links">
+                                <MudIconButton Icon="@Icons.Custom.Brands.Facebook" Color="Color.Primary" />
+                                <MudIconButton Icon="@Icons.Custom.Brands.Twitter" Color="Color.Primary" />
+                                <MudIconButton Icon="@Icons.Custom.Brands.LinkedIn" Color="Color.Primary" />
+                            </MudStack>
+                        </MudItem>
+                    </MudGrid>
+                </MudItem>
+            </MudGrid>
+            
+            <MudDivider Class="footer-divider" />
+            
+            <div class="footer-bottom">
+                <MudText Class="copyright">© 2025 Inameta Shipping. Seluruh hak cipta dilindungi.</MudText>
+                <MudStack Row="true" Class="footer-legal">
+                    <MudLink Href="#" Class="footer-link">Kebijakan Privasi</MudLink>
+                    <MudLink Href="#" Class="footer-link">Syarat Layanan</MudLink>
+                </MudStack>
+            </div>
+        </MudContainer>
+    </footer>
+</div>
