@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
+    [Table("TransactionItems", Schema = "Template")]
     public class TransactionItem
     {
         public Guid Id { get; set; }

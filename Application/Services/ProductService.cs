@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
 using Shared.DTO.Product;
+using System.ComponentModel.DataAnnotations;
 
 namespace Application.Services
 {
@@ -32,6 +33,9 @@ namespace Application.Services
 
         public Task AddProduct(Product product)
         {
+            var context = new ValidationContext(product);
+            Validator.ValidateObject(product, context, validateAllProperties: true);
+
             return _productRepository.AddAsync(product);
         }
 

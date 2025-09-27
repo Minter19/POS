@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Infrastructure.Data.Seed;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
@@ -7,33 +8,16 @@ namespace Infrastructure.Data
     {
         public AppDbContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<TransactionItem> TransactionItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Product>()
-                .Property(p => p.Price)
-                .HasPrecision(18, 2);
+            //modelBuilder.Entity<Product>().HasData(ProductExampleSeed.GetProductsExample()); //melakukan seeding data pada awal dijalankan 
 
-            modelBuilder.Entity<Product>()
-                .Property(p => p.Stock)
-                .HasMaxLength(6);
-
-            modelBuilder.Entity<TransactionItem>()
-                .Property(p => p.PricePerUnit)
-                .HasPrecision(18, 2);
-
-            modelBuilder.Entity<TransactionItem>()
-                .Property(p => p.Quantity)
-                .HasMaxLength(6);
-
-            modelBuilder.Entity<Transaction>()
-                .Property(p => p.TotalAmount)
-                .HasPrecision(18, 2);
-
+            //default template schema
+            //modelBuilder.HasDefaultSchema("IE"); //default entity schema untuk semua entity
             base.OnModelCreating(modelBuilder);
         }
     }
